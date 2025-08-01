@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Catalogue - Digital Book Store</title>
+  <title>Digital Book Store</title>
   <style>
     * {
       box-sizing: border-box;
@@ -12,250 +12,122 @@
     }
 
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      background: white;
     }
 
     .header {
       background-color: #78878b;
       color: white;
-      padding: 15px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 15px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      flex-wrap: wrap;
     }
 
     .logo img {
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
     }
 
     .header-title {
-      text-align: center;
       flex: 1;
-      margin-right: 80px;
+      text-align: center;
     }
 
     .header-title h1 {
-      font-size: 30px;
-      margin-bottom: 5px;
+      font-size: 28px;
     }
 
     .header-title h2 {
-      font-size: 16px;
-      font-weight: 400;
+      font-size: 14px;
+      font-weight: normal;
     }
 
-    .navbar {
-      background-color: #555c5c;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      flex-wrap: wrap;
-    }
-
-    .nav-logo {
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    .nav-toggle {
-      font-size: 28px;
+    .menu-toggle {
       display: none;
+      flex-direction: column;
       cursor: pointer;
     }
 
-    .nav-links {
-      list-style: none;
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+    }
+
+    nav {
+      background-color: #555c5c;
       display: flex;
-      gap: 40px;
-    }
-
-    .nav-links li a {
-      color: wheat;
-      text-decoration: none;
-      font-size: 17px;
-      transition: 0.3s;
-    }
-
-    .nav-links li a:hover {
-      color: white;
-      transform: scale(1.03);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-    }
-
-    @media (max-width: 768px) {
-      .nav-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #444;
-        margin-top: 10px;
-      }
-
-      .nav-links.show {
-        display: flex;
-      }
-
-      .nav-links li {
-        text-align: center;
-        padding: 10px 0;
-      }
-    }
-
-    .container {
-      display: flex;
+      justify-content: center;
       flex-wrap: wrap;
     }
 
-    .sidebar {
-      width: 200px;
-      background: linear-gradient(500deg, #acc8fd, #007b8b);
-      padding: 20px;
-      border-right: 2px solid #ddd;
-    }
-
-    .sidebar a {
-      display: block;
-      color: #352a3d;
+    nav a {
+      color: wheat;
       text-decoration: none;
-      margin-bottom: 15px;
+      padding: 15px 20px;
       font-size: 16px;
       transition: all 0.3s ease;
     }
 
-    .sidebar a:hover {
-      color: #00008b;
-      transform: translateX(5px);
-    }
-
-    .content {
-      flex: 1;
-      color: black;
-      padding: 30px;
-      text-align: center;
-      background: linear-gradient(120deg, #79838d, #d1d7e0);
-    }
-
-    .search-bar {
-      margin-bottom: 20px;
-    }
-
-    .search-bar input {
-      padding: 10px;
-      width: 300px;
-      max-width: 90%;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 20px;
-    }
-
-    .dropbtn {
-      background-color: #007b8b;
+    nav a:hover {
+      background-color: #666;
       color: white;
-      padding: 10px 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: 0.3s;
-    }
-
-    .dropbtn:hover {
-      background-color: #005f6b;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: white;
-      border: 1px solid #ccc;
-      min-width: 180px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-      z-index: 1;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      transition: background 0.3s;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #f1f1f1;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
     }
 
     .books-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 20px;
+      padding: 40px;
+      background: linear-gradient(120deg,#79838d,#d1d7e0);
     }
 
     .book-card {
-      background-color: rgb(227, 239, 241);
-      border-radius: 5px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 250px;
-      text-align: center;
-      padding: 15px;
-      transition: 0.4s ease;
-    }
-
-    .book-card img {
-      width: 100%;
+      background: white;
       border-radius: 8px;
-    }
-
-    .book-card h3 {
-      font-size: 1.2em;
-      margin: 10px 0;
-    }
-
-    .book-card p {
-      margin: 5px 0;
-    }
-
-    .book-card button {
-      background-color: #28a745;
-      border: none;
-      color: white;
-      padding: 10px;
-      width: 100%;
-      cursor: pointer;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-
-    .book-card button:hover {
-      background-color: #218838;
+      padding: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      text-align: center;
+      transition: transform 0.3s ease;
     }
 
     .book-card:hover {
       transform: scale(1.03);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+
+    .book-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .book-card h3 {
+      margin: 10px 0 5px;
+    }
+
+    .book-card p {
+      margin: 4px 0;
+    }
+
+    .book-card button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .book-card button:hover {
+      background: #0056b3;
     }
 
     footer {
@@ -265,18 +137,24 @@
       padding: 10px;
     }
 
-    footer a {
-      color: wheat;
-      text-decoration: underline;
-    }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
 
-    footer a:hover {
-      color: white;
+      nav {
+        display: none;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav.active {
+        display: flex;
+      }
     }
   </style>
 </head>
 <body>
-
   <!-- Header -->
   <div class="header">
     <div class="logo">
@@ -286,80 +164,83 @@
       <h1>Digital Book Store</h1>
       <h2>Created & Maintained by Aditya</h2>
     </div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="nav-logo">📚 Book Store</div>
-    <div class="nav-toggle" id="navToggle">&#9776;</div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="login.html">LOGIN</a></li>
-      <li><a href="register.html">REGISTER</a></li>
-      <li><a href="catalogue.html">CATALOGUE</a></li>
-    </ul>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="#">HOME</a>
+    <a href="#">LOGIN</a>
+    <a href="#">REGISTER</a>
+    <a href="#">CATALOGUE</a>
   </nav>
 
-  <div class="container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <a href="#">BestSellings</a>
-      <a href="#">E-Books</a>
-      <a href="#">Science Books</a>
-      <a href="#">Engineering Books</a>
+  <!-- Book Cards -->
+  <section class="books-container">
+    <div class="book-card">
+      <img src="https://m.media-amazon.com/images/I/61pShypA-nL._SL1000_.jpg" alt="Do It Today">
+      <h3>Do It Today</h3>
+      <p>Author: Darius Foroux</p>
+      <p>Price: ₹249</p>
+      <button>Add to Cart</button>
     </div>
 
-    <!-- Main Content -->
-    <main class="content">
-      <div class="search-bar">
-        <input type="text" placeholder="Search for books...">
-      </div>
+    <div class="book-card">
+      <img src="https://m.media-amazon.com/images/I/81WcnNQ-TBL._SL1500_.jpg" alt="Atomic Habits">
+      <h3>Atomic Habits</h3>
+      <p>Author: James Clear</p>
+      <p>Price: ₹350</p>
+      <button>Add to Cart</button>
+    </div>
 
-      <div class="dropdown">
-        <button class="dropbtn">Categories</button>
-        <div class="dropdown-content">
-          <a href="#">Fiction</a>
-          <a href="#">Biographies</a>
-          <a href="#">Comics</a>
-          <a href="#">Technology</a>
-        </div>
-      </div>
+    <div class="book-card">
+      <img src="https://m.media-amazon.com/images/I/61Iz2yy2CKL._SL1500_.jpg" alt="The Psychology of Money">
+      <h3>The Psychology of Money</h3>
+      <p>Author: Morgan Housel</p>
+      <p>Price: ₹399</p>
+      <button>Add to Cart</button>
+    </div>
 
-      <section class="books-container">
-        <!-- Book cards (reuse as needed) -->
-        <div class="book-card">
-          <img src="https://i.annihil.us/u/prod/marvel/i/mg/e/90/611bd32e9baca/clean.jpg" alt="Moon Knight">
-          <h3>Moon Knight</h3>
-          <p>Author: Stan Lee</p>
-          <p>Price: ₹499</p>
-          <button>Add to Cart</button>
-        </div>
+    <div class="book-card">
+      <img src="https://m.media-amazon.com/images/I/71g2ednj0JL._SL1360_.jpg" alt="Ikigai">
+      <h3>Ikigai</h3>
+      <p>Author: Héctor García</p>
+      <p>Price: ₹299</p>
+      <button>Add to Cart</button>
+    </div>
 
-        <div class="book-card">
-          <img src="https://cdn.marvel.com/content/1x/loki_lob_crd_04.jpg" alt="Loki">
-          <h3>Loki</h3>
-          <p>Author: Stan Lee</p>
-          <p>Price: ₹600</p>
-          <button>Add to Cart</button>
-        </div>
+    <div class="book-card">
+      <img src="https://m.media-amazon.com/images/I/81z0DY77OOL._SL1500_.jpg" alt="Moon Knight">
+      <h3>Moon Knight</h3>
+      <p>Author: Marvel Comics</p>
+      <p>Price: ₹499</p>
+      <button>Add to Cart</button>
+    </div>
 
-        <!-- Add more cards here -->
-      </section>
-    </main>
-  </div>
+    <div class="book-card">
+      <img src="https://m.media-amazon.com/images/I/81z0DY77OOL._SL1500_.jpg" alt="Loki">
+      <h3>Loki</h3>
+      <p>Author: Marvel Comics</p>
+      <p>Price: ₹399</p>
+      <button>Add to Cart</button>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Digital's Book Store | <a href="#">Contact Us</a></p>
   </footer>
 
+  <!-- JavaScript -->
   <script>
-    const toggle = document.getElementById('navToggle');
-    const links = document.getElementById('navLinks');
-
-    toggle.addEventListener('click', () => {
-      links.classList.toggle('show');
-    });
+    function toggleMenu() {
+      const nav = document.getElementById('navbar');
+      nav.classList.toggle('active');
+    }
   </script>
 </body>
 </html>
