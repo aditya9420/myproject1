@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Digital Book Store</title>
+  <title>Book Catalogue</title>
   <style>
     * {
       box-sizing: border-box;
@@ -80,6 +80,42 @@
       color: white;
     }
 
+    .search-bar {
+      padding: 20px;
+      text-align: center;
+      background: #f2f2f2;
+    }
+
+    .search-bar input {
+      width: 60%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: #e2e2e2;
+      padding: 10px;
+      gap: 10px;
+    }
+
+    .categories button {
+      padding: 8px 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .categories button:hover {
+      background: #0056b3;
+    }
+
     .books-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -151,6 +187,10 @@
       nav.active {
         display: flex;
       }
+
+      .search-bar input {
+        width: 90%;
+      }
     }
   </style>
 </head>
@@ -179,16 +219,24 @@
     <a href="catalogue.html">CATALOGUE</a>
   </nav>
 
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input type="text" placeholder="Search for books...">
+  </div>
+
+  <!-- Categories -->
+  <div class="categories">
+    <button>Fiction</button>
+    <button>Self Help</button>
+    <button>Comics</button>
+    <button>Finance</button>
+    <button>Biographies</button>
+    <button>Kids</button>
+  </div>
+
   <!-- Book Cards -->
   <section class="books-container">
-    <div class="book-card">
-      <img src="https://m.media-amazon.com/images/I/61pShypA-nL._SL1000_.jpg" alt="Do It Today">
-      <h3>Do It Today</h3>
-      <p>Author: Darius Foroux</p>
-      <p>Price: ₹249</p>
-      <button>Add to Cart</button>
-    </div>
-
+    <!-- Paste your book cards here or reuse from index.html -->
     <div class="book-card">
       <img src="https://m.media-amazon.com/images/I/81WcnNQ-TBL._SL1500_.jpg" alt="Atomic Habits">
       <h3>Atomic Habits</h3>
@@ -210,6 +258,14 @@
       <h3>Ikigai</h3>
       <p>Author: Héctor García</p>
       <p>Price: ₹299</p>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="book-card">
+      <img src="https://m.media-amazon.com/images/I/61pShypA-nL._SL1000_.jpg" alt="Do It Today">
+      <h3>Do It Today</h3>
+      <p>Author: Darius Foroux</p>
+      <p>Price: ₹249</p>
       <button>Add to Cart</button>
     </div>
 
