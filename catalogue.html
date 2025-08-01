@@ -1,134 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-    <title>Online Book Store</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: white;
-        }
-        /* Header */
-        .header {
-            background-color: #78878b;
-         color: white;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        .logo {
-            width: 80px;
-            height:80px;
-            background-color: white;
-        padding-bottom: 120px;
-       
-           
-        }
-        .header-title {
-            text-align: center;
-            flex: 1;
-        }
-        .header-title h1 {
-            font-size: 30px;
-            margin-bottom: 5px;
-        }
-        .header-title h2 {
-            font-size: 16px;
-            font-weight: 400;
-        }
-        /* Navigation */
-        nav {
-            background-color: #555c5c;
-            color: white;
-            display: flex;
-            justify-content: center;
-            padding: 10px;
-            gap: 50px;
-            
-        }
-        nav a {
-            text-decoration: none;
-            color: wheat;
-            font-size: 17px;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-             transform: scale(1.03);
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-        border-color: rgba(255, 255, 255, 0.5);
-            color: white;
-        }
-        .container {
-            
-            
-            padding: 0px;
-        }
-        .sidebar {
-            width: 200px;
-            background: linear-gradient(500deg, #acc8fd, #007b8b);
-            padding: 20px;
-            border-right: 2px solid #ddd;
-        
-        }
-        .sidebar a {
-            display: block;
-            color: #352a3d;
-            text-decoration: none;
-            margin-bottom: 15px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        .sidebar a:hover {
-            color: #00008b;
-            transform: translateX(5px);
-        }
-        .cta {
-      background-color: black;
-      color: white;
-      padding: 12px 20px;
-      text-decoration: none;
-      text-align: center;
-      border-radius: 5px;
-      font-weight: bold;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Book Store</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-        .content {
-            flex: 1;
-             color: black;
-            padding: 30px;
-            text-align: center;
-            background: linear-gradient(120deg,#79838d,#d1d7e0);
-        }
-        .content img {
-            width: 250px;
-            margin-bottom: 20px;
-        }
-        .content h3 {
-            color: #00008b;
-            margin-bottom: 15px;
-        }
-        .content p {
-            font-size: 18px;
-            font-weight: bold;
-            color: #ab8bb9;
-        }
-        footer{
-            background-color: #424040;
-      color: wheat;
-      text-align: center;
-      padding: 10px;     
-         }
 
-         .dropdown {
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    /* Header */
+    .header {
+      background-color: #78878b;
+      color: white;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+    }
+
+    .header-title {
+      text-align: center;
+      flex: 1;
+    }
+
+    .header-title h1 {
+      font-size: 30px;
+      margin-bottom: 5px;
+    }
+
+    .header-title h2 {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #555c5c;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .nav-toggle {
+      font-size: 28px;
+      display: none;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-links li a {
+      color: wheat;
+      text-decoration: none;
+      font-size: 17px;
+      transition: 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: white;
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #444;
+        margin-top: 10px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links li {
+        text-align: center;
+        padding: 10px 0;
+      }
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .sidebar {
+      width: 200px;
+      background: linear-gradient(500deg, #acc8fd, #007b8b);
+      padding: 20px;
+      border-right: 2px solid #ddd;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #352a3d;
+      text-decoration: none;
+      margin-bottom: 15px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      color: #00008b;
+      transform: translateX(5px);
+    }
+
+    .content {
+      flex: 1;
+      color: black;
+      padding: 30px;
+      text-align: center;
+      background: linear-gradient(120deg, #79838d, #d1d7e0);
+    }
+
+    .dropdown {
       position: relative;
       display: inline-block;
+      margin-bottom: 20px;
     }
 
     .dropdown-content {
@@ -136,7 +157,7 @@
       position: absolute;
       background-color: #f9f9f9;
       min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
       z-index: 1;
     }
 
@@ -155,85 +176,44 @@
       display: block;
     }
 
-    .dropdown:hover .dropbtn {
-      background-color: #ddd;
-    }
-
     .dropbtn {
       background-color: #eee;
       padding: 10px;
       border: none;
       cursor: pointer;
     }
-  
-.add-to-cart {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
 
-.add-to-cart:hover {
-  background-color: #45a049; /* Darker green */
-}
-
-.cart-counter {
-  margin-left:   10px;
-    font-weight :   bold ;
-}
-body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-    header {
-      background-color: #333;
-      color: white;
-      padding: 10px 0;
-      text-align: center;
-    }
-    header nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-    }
-    .container {
+    .books-container {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
-      
+      justify-content: center;
     }
+
     .book-card {
       background-color: rgb(227, 239, 241);
       border-radius: 5px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       margin: 10px;
       width: 250px;
-      height:fit-content;
       text-align: center;
       padding: 15px;
       transition: 0.4s ease;
     }
+
     .book-card img {
       width: 100%;
       border-radius: 8px;
     }
+
     .book-card h3 {
       font-size: 1.2em;
       margin: 10px 0;
     }
+
     .book-card p {
       margin: 5px 0;
     }
+
     .book-card button {
       background-color: #28a745;
       border: none;
@@ -244,120 +224,136 @@ body {
       border-radius: 5px;
       margin-top: 10px;
     }
+
     .book-card button:hover {
       background-color: #218838;
     }
-    .book-card:hover{
+
+    .book-card:hover {
       transform: scale(1.03);
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-        border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
     }
 
-    </style>
+    footer {
+      background-color: #424040;
+      color: wheat;
+      text-align: center;
+      padding: 10px;
+    }
+
+    footer a {
+      color: wheat;
+      text-decoration: underline;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <div class="header">
-        <div class="logo">
-            <!-- Replace below with your logo image -->
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFyuyX5fuPg_zl1UIWW6bpfMSv4fQlmXnPcQ&s" width="auto" height="170px">
-        </div>
-        <div class="header-title">
-            <h1> Digital Book Store</h1>
-            <h2>Created & Maintained by Aditya</h2>
-        </div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFyuyX5fuPg_zl1UIWW6bpfMSv4fQlmXnPcQ&s" width="80" height="80">
     </div>
-    <!-- Navigation -->
-    <nav>
- 
-        <a href="index.html">HOME  </a>
-        <a href="login.html">LOGIN </a>
-        <a href="register.html">REGISTER  </a>
-        <a href="catalogue.html">CATALOGUE </a>
-       
-    
-      
-    </nav>
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <a href="#">BestSellings</a>
-            <a href="#">E-Books</a>
-            <a href="#">Science Books</a>
-            <a href="#">Engineering Books</a>
-        </div>
-        <!-- Main Content Area -->
-        <div class="content">
-            <div class="dropdown">
-                <button class="dropbtn">Categories</button>
-                <div class="dropdown-content">
-                  <a href="#">Fiction</a>
-                  <a href="#">Biographies</a>
-                  <a href="#">Comics</a>
-                </div>
-              </div>
-            
-              <section class="container">
-                <div class="book-card">
-                  <img src="https://i.annihil.us/u/prod/marvel/i/mg/e/90/611bd32e9baca/clean.jpg" alt="Book 1">
-                  <h3>Moon Knight</h3>
-                  <p>Author: Stan Lee</p>
-                  <p>Price: ₹499</p>
-                  <button>Add to Cart</button>
-                </div>
-            
-                <div class="book-card">
-                  <img src="https://cdn.marvel.com/content/1x/loki_lob_crd_04.jpg" alt="Book 2">
-                  <h3>loki</h3>
-                  <p>Author: Stan lee</p>
-                  <p>Price: ₹600</p><br>
-                  <button>Add to Cart</button>
-                </div>
-            
-                  <div class="book-card">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6gYU9KB1RHZhrqRDXqsKod9doX9Ry5sft9g&s" alt="Book 3">
-                  <h3>The Punisher</h3>
-                  <p>Author: Stan lee</p>
-                  <p>Price: ₹1000 </p> <br>
-                  <button>Add to Cart</button>
-                </div>
-
-                 <div class="book-card">
-                  <img src="https://m.media-amazon.com/images/I/71DW5Hrc41L._UF1000,1000_QL80_.jpg" alt="Book 3">
-                  <h3>A Perfect Murder</h3>
-                  <p>Author: Stan lee</p>
-                  <p>Price: ₹1000 </p> <br>
-                  <button>Add to Cart</button>
-                </div>
-
-                <div class="book-card">
-                  <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ-TN2QEY2BBL1WUJubswCwGkMsc16-CicTIeb59IdDtoTRaPFmuzUnhtz5GIWUZCGIAsuNlxDWQhyQ3UPfywol2lrkBQBVnNkHzh0elyE" alt="Book 3">
-                  <h3>Naruto</h3>
-                  <p>Author: Stan lee</p>
-                  <p>Price: ₹1000 </p> <br>
-                  <button>Add to Cart</button>
-                </div>
-            
-                  
-              
-              </section>
-            </main>
-            
-            
-
- 
-
-
-
-            
-          
-        </div>
+    <div class="header-title">
+      <h1>Digital Book Store</h1>
+      <h2>Created & Maintained by Aditya</h2>
     </div>
-    <footer>
-    <p> &copy; 2025 Digital'S Book Store | 
-        <a href="@"> Contact US</a>
-    </p>
-    </footer>
+  </div>
+
+  <!-- Responsive Navbar -->
+  <nav class="navbar">
+    <div class="nav-logo">📚 Book Store</div>
+    <div class="nav-toggle" id="navToggle">&#9776;</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="login.html">LOGIN</a></li>
+      <li><a href="register.html">REGISTER</a></li>
+      <li><a href="catalogue.html">CATALOGUE</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <a href="#">BestSellings</a>
+      <a href="#">E-Books</a>
+      <a href="#">Science Books</a>
+      <a href="#">Engineering Books</a>
+    </div>
+
+    <!-- Content -->
+    <main class="content">
+      <div class="dropdown">
+        <button class="dropbtn">Categories</button>
+        <div class="dropdown-content">
+          <a href="#">Fiction</a>
+          <a href="#">Biographies</a>
+          <a href="#">Comics</a>
+        </div>
+      </div>
+
+      <section class="books-container">
+        <div class="book-card">
+          <img src="https://i.annihil.us/u/prod/marvel/i/mg/e/90/611bd32e9baca/clean.jpg" alt="Moon Knight">
+          <h3>Moon Knight</h3>
+          <p>Author: Stan Lee</p>
+          <p>Price: ₹499</p>
+          <button>Add to Cart</button>
+        </div>
+
+        <div class="book-card">
+          <img src="https://cdn.marvel.com/content/1x/loki_lob_crd_04.jpg" alt="Loki">
+          <h3>Loki</h3>
+          <p>Author: Stan Lee</p>
+          <p>Price: ₹600</p>
+          <button>Add to Cart</button>
+        </div>
+
+        <div class="book-card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6gYU9KB1RHZhrqRDXqsKod9doX9Ry5sft9g&s" alt="Punisher">
+          <h3>The Punisher</h3>
+          <p>Author: Stan Lee</p>
+          <p>Price: ₹1000</p>
+          <button>Add to Cart</button>
+        </div>
+
+        <div class="book-card">
+          <img src="https://m.media-amazon.com/images/I/71DW5Hrc41L._UF1000,1000_QL80_.jpg" alt="A Perfect Murder">
+          <h3>A Perfect Murder</h3>
+          <p>Author: Stan Lee</p>
+          <p>Price: ₹1000</p>
+          <button>Add to Cart</button>
+        </div>
+
+        <div class="book-card">
+          <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ-TN2QEY2BBL1WUJubswCwGkMsc16-CicTIeb59IdDtoTRaPFmuzUnhtz5GIWUZCGIAsuNlxDWQhyQ3UPfywol2lrkBQBVnNkHzh0elyE" alt="Naruto">
+          <h3>Naruto</h3>
+          <p>Author: Stan Lee</p>
+          <p>Price: ₹1000</p>
+          <button>Add to Cart</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Digital's Book Store | <a href="#">Contact Us</a></p>
+  </footer>
+
+  <!-- Hamburger Script -->
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('show');
+    });
+  </script>
 </body>
 </html>
