@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Book Store</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catalogue - Digital Book Store</title>
   <style>
     * {
       box-sizing: border-box;
@@ -16,7 +16,6 @@
       background-color: #f4f4f4;
     }
 
-    /* Header */
     .header {
       background-color: #78878b;
       color: white;
@@ -27,7 +26,7 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
-    .logo {
+    .logo img {
       width: 80px;
       height: 80px;
     }
@@ -35,6 +34,7 @@
     .header-title {
       text-align: center;
       flex: 1;
+      margin-right: 80px;
     }
 
     .header-title h1 {
@@ -47,7 +47,6 @@
       font-weight: 400;
     }
 
-    /* Navbar */
     .navbar {
       background-color: #555c5c;
       color: white;
@@ -61,7 +60,6 @@
     .nav-logo {
       font-size: 20px;
       font-weight: bold;
-      color: white;
     }
 
     .nav-toggle {
@@ -146,19 +144,51 @@
       background: linear-gradient(120deg, #79838d, #d1d7e0);
     }
 
+    .search-bar {
+      margin-bottom: 20px;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      width: 300px;
+      max-width: 90%;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
     .dropdown {
       position: relative;
       display: inline-block;
       margin-bottom: 20px;
     }
 
+    .dropbtn {
+      background-color: #007b8b;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .dropbtn:hover {
+      background-color: #005f6b;
+    }
+
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      background-color: white;
+      border: 1px solid #ccc;
+      min-width: 180px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
       z-index: 1;
+      border-radius: 5px;
+      overflow: hidden;
     }
 
     .dropdown-content a {
@@ -166,6 +196,7 @@
       padding: 12px 16px;
       text-decoration: none;
       display: block;
+      transition: background 0.3s;
     }
 
     .dropdown-content a:hover {
@@ -176,24 +207,17 @@
       display: block;
     }
 
-    .dropbtn {
-      background-color: #eee;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-    }
-
     .books-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 20px;
     }
 
     .book-card {
       background-color: rgb(227, 239, 241);
       border-radius: 5px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin: 10px;
       width: 250px;
       text-align: center;
       padding: 15px;
@@ -256,7 +280,7 @@
   <!-- Header -->
   <div class="header">
     <div class="logo">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFyuyX5fuPg_zl1UIWW6bpfMSv4fQlmXnPcQ&s" width="80" height="80">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFyuyX5fuPg_zl1UIWW6bpfMSv4fQlmXnPcQ&s" alt="Logo">
     </div>
     <div class="header-title">
       <h1>Digital Book Store</h1>
@@ -264,7 +288,7 @@
     </div>
   </div>
 
-  <!-- Responsive Navbar -->
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-logo">📚 Book Store</div>
     <div class="nav-toggle" id="navToggle">&#9776;</div>
@@ -276,7 +300,6 @@
     </ul>
   </nav>
 
-  <!-- Main Container -->
   <div class="container">
     <!-- Sidebar -->
     <div class="sidebar">
@@ -286,18 +309,24 @@
       <a href="#">Engineering Books</a>
     </div>
 
-    <!-- Content -->
+    <!-- Main Content -->
     <main class="content">
+      <div class="search-bar">
+        <input type="text" placeholder="Search for books...">
+      </div>
+
       <div class="dropdown">
         <button class="dropbtn">Categories</button>
         <div class="dropdown-content">
           <a href="#">Fiction</a>
           <a href="#">Biographies</a>
           <a href="#">Comics</a>
+          <a href="#">Technology</a>
         </div>
       </div>
 
       <section class="books-container">
+        <!-- Book cards (reuse as needed) -->
         <div class="book-card">
           <img src="https://i.annihil.us/u/prod/marvel/i/mg/e/90/611bd32e9baca/clean.jpg" alt="Moon Knight">
           <h3>Moon Knight</h3>
@@ -314,29 +343,7 @@
           <button>Add to Cart</button>
         </div>
 
-        <div class="book-card">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6gYU9KB1RHZhrqRDXqsKod9doX9Ry5sft9g&s" alt="Punisher">
-          <h3>The Punisher</h3>
-          <p>Author: Stan Lee</p>
-          <p>Price: ₹1000</p>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="book-card">
-          <img src="https://m.media-amazon.com/images/I/71DW5Hrc41L._UF1000,1000_QL80_.jpg" alt="A Perfect Murder">
-          <h3>A Perfect Murder</h3>
-          <p>Author: Stan Lee</p>
-          <p>Price: ₹1000</p>
-          <button>Add to Cart</button>
-        </div>
-
-        <div class="book-card">
-          <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ-TN2QEY2BBL1WUJubswCwGkMsc16-CicTIeb59IdDtoTRaPFmuzUnhtz5GIWUZCGIAsuNlxDWQhyQ3UPfywol2lrkBQBVnNkHzh0elyE" alt="Naruto">
-          <h3>Naruto</h3>
-          <p>Author: Stan Lee</p>
-          <p>Price: ₹1000</p>
-          <button>Add to Cart</button>
-        </div>
+        <!-- Add more cards here -->
       </section>
     </main>
   </div>
@@ -346,7 +353,6 @@
     <p>&copy; 2025 Digital's Book Store | <a href="#">Contact Us</a></p>
   </footer>
 
-  <!-- Hamburger Script -->
   <script>
     const toggle = document.getElementById('navToggle');
     const links = document.getElementById('navLinks');
