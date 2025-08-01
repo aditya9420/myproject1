@@ -1,321 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Online Book Store</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <title>Online Book Store</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: white;
-        }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: white;
+    }
 
-        /* Header */
-        .header {
-            background-color: #78878b;
-            color: white;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
+    /* Header */
+    .header {
+      background-color: #78878b;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      flex-wrap: wrap;
+    }
 
-        .logo {
-            width: 80px;
-            height: 80px;
-            background-color: white;
-            padding-bottom: 120px;
-        }
+    .logo img {
+      height: 80px;
+      width: auto;
+      object-fit: contain;
+    }
 
-        .header-title {
-            text-align: center;
-            flex: 1;
-        }
+    .header-title {
+      text-align: center;
+      flex: 1;
+    }
 
-        .header-title h1 {
-            font-size: 30px;
-            margin-bottom: 5px;
-        }
+    .header-title h1 {
+      font-size: 30px;
+      margin-bottom: 5px;
+    }
 
-        .header-title h2 {
-            font-size: 16px;
-            font-weight: 400;
-        }
+    .header-title h2 {
+      font-size: 16px;
+      font-weight: 400;
+    }
 
-        /* Navbar */
-        .navbar {
-            background-color: #555c5c;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            flex-wrap: wrap;
-        }
+    /* Navbar */
+    .navbar {
+      background-color: #555c5c;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      flex-wrap: wrap;
+    }
 
-        .nav-logo {
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-        }
+    .nav-logo {
+      font-weight: bold;
+      color: white;
+      font-size: 20px;
+    }
 
-        .nav-toggle {
-            font-size: 28px;
-            display: none;
-            cursor: pointer;
-        }
+    .nav-toggle {
+      font-size: 28px;
+      display: none;
+      cursor: pointer;
+    }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 40px;
-        }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
 
-        .nav-links li a {
-            color: wheat;
-            text-decoration: none;
-            font-size: 17px;
-            transition: 0.3s;
-        }
+    .nav-links li a {
+      color: wheat;
+      text-decoration: none;
+      font-size: 17px;
+      transition: 0.3s;
+    }
 
-        .nav-links li a:hover {
-            color: white;
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-        }
+    .nav-links li a:hover {
+      color: white;
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
 
-        @media (max-width: 768px) {
-            .nav-toggle {
-                display: block;
-            }
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
 
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background-color: #444;
-                margin-top: 10px;
-            }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #444;
+        margin-top: 10px;
+      }
 
-            .nav-links.show {
-                display: flex;
-            }
+      .nav-links.show {
+        display: flex;
+      }
 
-            .nav-links li {
-                text-align: center;
-                padding: 10px 0;
-            }
-        }
+      .nav-links li {
+        text-align: center;
+        padding: 10px 0;
+      }
+    }
 
-        /* Container layout */
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            min-height: 80vh;
-        }
+    .container {
+      display: flex;
+      min-height: 80vh;
+    }
 
-        .sidebar {
-            width: 200px;
-            background: linear-gradient(500deg, #acc8fd, #007b8b);
-            padding: 20px;
-            border-right: 2px solid #ddd;
-        }
+    .sidebar {
+      width: 200px;
+      background: linear-gradient(500deg, #acc8fd, #007b8b);
+      padding: 20px;
+      border-right: 2px solid #ddd;
+    }
 
-        .sidebar a {
-            display: block;
-            color: #352a3d;
-            text-decoration: none;
-            margin-bottom: 15px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
+    .sidebar a {
+      display: block;
+      color: #352a3d;
+      text-decoration: none;
+      margin-bottom: 15px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
 
-        .sidebar a:hover {
-            color: #00008b;
-            transform: translateX(5px);
-        }
+    .sidebar a:hover {
+      color: #00008b;
+      transform: translateX(5px);
+    }
 
-        .cta {
-            background-color: black;
-            color: white;
-            padding: 12px 20px;
-            text-decoration: none;
-            text-align: center;
-            border-radius: 5px;
-            font-weight: bold;
-        }
+    .cta {
+      background-color: black;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 5px;
+      font-weight: bold;
+    }
 
-        .content {
-            flex: 1;
-            color: black;
-            padding: 30px;
-            text-align: center;
-            background: linear-gradient(120deg, #79838d, #d1d7e0);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .content {
+      flex: 1;
+      color: black;
+      padding: 30px;
+      text-align: center;
+      background: linear-gradient(120deg, #79838d, #d1d7e0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .content img {
-            width: 250px;
-            margin-bottom: 20px;
-        }
+    .content img {
+      width: 250px;
+      margin-bottom: 20px;
+    }
 
-        .content h3 {
-            color: #00008b;
-            margin-bottom: 15px;
-        }
+    .content h3 {
+      color: #00008b;
+      margin-bottom: 15px;
+    }
 
-        .content p {
-            font-size: 18px;
-            font-weight: bold;
-            color: #ab8bb9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .content p {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ab8bb9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        footer {
-            background-color: #424040;
-            color: wheat;
-            text-align: center;
-            padding: 10px;
-        }
+    footer {
+      background-color: #424040;
+      color: wheat;
+      text-align: center;
+      padding: 10px;
+    }
 
-        .login-box {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(5px);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            margin-right: 8%;
-            transition: 0.4s ease;
-        }
+    .login-box {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(5px);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      margin-right: 8%;
+      transition: 0.4s ease;
+    }
 
-        .login-box h2 {
-            color: #fff;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+    .login-box h2 {
+      color: #fff;
+      margin-bottom: 20px;
+      text-align: center;
+    }
 
-        .login-box:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-        }
+    .login-box:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
 
-        .login-box input[type="text"],
-        .login-box input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-        .login-box input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    .login-box input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-        .login-box input[type="submit"]:hover {
-            background: #0056b3;
-        }
+    .login-box input[type="submit"]:hover {
+      background: #0056b3;
+    }
 
-        .show-password {
-            margin-top: 5px;
-            text-align: right;
-            cursor: pointer;
-            color: #eee;
-            font-size: 14px;
-        }
-
-    </style>
+    .toggle-password {
+      background: none;
+      border: none;
+      color: blue;
+      cursor: pointer;
+      float: right;
+      margin-top: -30px;
+      margin-right: 10px;
+      position: relative;
+      z-index: 2;
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <div class="header">
-        <div class="logo">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFyuyX5fuPg_zl1UIWW6bpfMSv4fQlmXnPcQ&s" height="170px">
-        </div>
-        <div class="header-title">
-            <h1>Digital Book Store</h1>
-            <h2>Created & Maintained by Aditya</h2>
-        </div>
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFyuyX5fuPg_zl1UIWW6bpfMSv4fQlmXnPcQ&s" alt="Logo">
+    </div>
+    <div class="header-title">
+      <h1>Digital Book Store</h1>
+      <h2>Created & Maintained by Aditya</h2>
+    </div>
+  </div>
+
+  <!-- Responsive Navigation -->
+  <nav class="navbar">
+    <div class="nav-logo">📚 Book Store</div>
+    <div class="nav-toggle" id="navToggle">&#9776;</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="login.html">LOGIN</a></li>
+      <li><a href="register.html">REGISTER</a></li>
+      <li><a href="catalogue.html">CATALOGUE</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <a href="#">BestSellings</a>
+      <a href="#">E-Books</a>
+      <a href="#">Science Books</a>
+      <a href="#">Engineering Books</a>
     </div>
 
-    <!-- Navigation with hamburger -->
-    <nav class="navbar">
-        <div class="nav-logo">📚 Book Store</div>
-        <div class="nav-toggle" id="navToggle">&#9776;</div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="login.html">LOGIN</a></li>
-            <li><a href="register.html">REGISTER</a></li>
-            <li><a href="catalogue.html">CATALOGUE</a></li>
-        </ul>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <a href="#">BestSellings</a>
-            <a href="#">E-Books</a>
-            <a href="#">Science Books</a>
-            <a href="#">Engineering Books</a>
-        </div>
-
-        <!-- Content -->
-        <div class="content">
-            <div class="login-box">
-                <h2>Login</h2>
-                <form>
-                    <input type="text" placeholder="Username" required>
-                    <input type="password" placeholder="Password" id="password" required>
-                    <div class="show-password" onclick="togglePassword()">👁 Show Password</div>
-                    <input type="submit" value="Log In">
-                </form>
-                <br>
-                <a href="#">No Account? Register Here</a>
-            </div>
-        </div>
+    <!-- Main Content Area -->
+    <div class="content">
+      <div class="login-box">
+        <h2>Login</h2>
+        <form>
+          <input type="text" placeholder="Username" required>
+          <input type="password" id="password" placeholder="Password" required>
+          <button type="button" class="toggle-password" onclick="togglePassword()">Show</button>
+          <input type="submit" value="Log In">
+        </form>
+        <br>
+        <a href="#">No Account? Register Here</a>
+      </div>
     </div>
+  </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Digital'S Book Store |
-            <a href="#">Contact US</a>
-        </p>
-    </footer>
+  <footer>
+    <p>&copy; 2025 Digital's Book Store |
+      <a href="#">Contact Us</a>
+    </p>
+  </footer>
 
-    <!-- JavaScript -->
-    <script>
-        // Hamburger toggle
-        const toggle = document.getElementById('navToggle');
-        const links = document.getElementById('navLinks');
+  <script>
+    // Hamburger menu toggle
+    document.getElementById('navToggle').addEventListener('click', function () {
+      document.getElementById('navLinks').classList.toggle('show');
+    });
 
-        toggle.addEventListener('click', () => {
-            links.classList.toggle('show');
-        });
-
-        // Password visibility toggle
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const type = passwordInput.type === "password" ? "text" : "password";
-            passwordInput.type = type;
-        }
-    </script>
+    // Toggle password visibility
+    function togglePassword() {
+      const pass = document.getElementById("password");
+      const btn = document.querySelector(".toggle-password");
+      if (pass.type === "password") {
+        pass.type = "text";
+        btn.textContent = "Hide";
+      } else {
+        pass.type = "password";
+        btn.textContent = "Show";
+      }
+    }
+  </script>
 </body>
 </html>
