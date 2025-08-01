@@ -1,67 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Online Book Store</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Roboto', sans-serif; background: white; }
-        .header { background-color: #78878b; color: white; padding: 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); }
-        .logo img { width: 80px; height: 80px; }
-        .header-title { text-align: center; flex: 1; }
-        .header-title h1 { font-size: 30px; margin-bottom: 5px; }
-        .header-title h2 { font-size: 16px; font-weight: 400; }
-        nav { background-color: #555c5c; color: white; display: flex; justify-content: center; padding: 10px; gap: 50px; }
-        nav a { text-decoration: none; color: wheat; font-size: 17px; transition: color 0.4s ease; }
-        nav a:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); border-color: rgba(255, 255, 255, 0.5); color: white; }
-        .container { display: flex; min-height: 80vh; }
-        .sidebar { width: 200px; background: linear-gradient(500deg, #acc8fd, #007b8b); padding: 20px; border-right: 2px solid #ddd; }
-        .sidebar a { display: block; color: #352a3d; text-decoration: none; margin-bottom: 15px; font-size: 16px; transition: all 0.3s ease; }
-        .sidebar a:hover { color: #00008b; transform: translateX(5px); }
-        .cta { background-color: black; color: white; padding: 12px 20px; text-decoration: none; text-align: center; border-radius: 5px; font-weight: bold; }
-        .content { flex: 1; color: black; padding: 30px; text-align: center; background: linear-gradient(120deg,#79838d,#d1d7e0); }
-        .content img { width: 250px; margin-bottom: 20px; }
-        .content h3 { color: #00008b; margin-bottom: 15px; }
-        .content p { font-size: 18px; font-weight: bold; color: #ab8bb9; }
-        footer { background-color: #424040; color: wheat; text-align: center; padding: 10px; }
-    </style>
+  <title>Online Book Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: white;
+    }
+
+    .header {
+      background-color: #78878b;
+      color: white;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo img {
+      width: 80px;
+      height: 80px;
+    }
+
+    .header-title {
+      text-align: center;
+      flex: 1;
+    }
+
+    .header-title h1 {
+      font-size: 30px;
+      margin-bottom: 5px;
+    }
+
+    .header-title h2 {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #555c5c;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .nav-toggle {
+      font-size: 28px;
+      display: none;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-links li a {
+      color: wheat;
+      text-decoration: none;
+      font-size: 17px;
+      transition: 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: white;
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #444;
+        margin-top: 10px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links li {
+        text-align: center;
+        padding: 10px 0;
+      }
+    }
+
+    .container {
+      display: flex;
+      min-height: 80vh;
+      flex-wrap: wrap;
+    }
+
+    .sidebar {
+      width: 200px;
+      background: linear-gradient(500deg, #acc8fd, #007b8b);
+      padding: 20px;
+      border-right: 2px solid #ddd;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #352a3d;
+      text-decoration: none;
+      margin-bottom: 15px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      color: #00008b;
+      transform: translateX(5px);
+    }
+
+    .cta {
+      background-color: black;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 5px;
+      font-weight: bold;
+      margin: 10px;
+      display: inline-block;
+    }
+
+    .content {
+      flex: 1;
+      color: black;
+      padding: 30px;
+      text-align: center;
+      background: linear-gradient(120deg, #79838d, #d1d7e0);
+    }
+
+    .content img {
+      width: 250px;
+      margin-bottom: 20px;
+    }
+
+    .content h3 {
+      color: #00008b;
+      margin-bottom: 15px;
+    }
+
+    .content p {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ab8bb9;
+    }
+
+    footer {
+      background-color: #424040;
+      color: wheat;
+      text-align: center;
+      padding: 10px;
+    }
+
+    footer a {
+      color: wheat;
+      text-decoration: underline;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <!-- Replace this with an online image URL if you have one -->
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFyuyX5fuPg_zl1UIWW6bpfMSv4fQlmXnPcQ&s" alt="Logo" width="auto" height="170px">
-        </div>
-        <div class="header-title">
-            <h1>Digital Book Store</h1>
-            <h2>Created & Maintained by Aditya</h2>
-        </div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFyuyX5fuPg_zl1UIWW6bpfMSv4fQlmXnPcQ&s" alt="Logo">
+    </div>
+    <div class="header-title">
+      <h1>Digital Book Store</h1>
+      <h2>Created & Maintained by Aditya</h2>
+    </div>
+  </div>
+
+  <!-- Responsive Navbar -->
+  <nav class="navbar">
+    <div class="nav-logo">📚 Book Store</div>
+    <div class="nav-toggle" id="navToggle">&#9776;</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="login.html">LOGIN</a></li>
+      <li><a href="register.html">REGISTER</a></li>
+      <li><a href="catalogue.html">CATALOGUE</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="sidebar">
+      <a href="#">BestSellings</a>
+      <a href="#">E-Books</a>
+      <a href="#">Science Books</a>
+      <a href="#">Engineering Books</a>
     </div>
 
-    <nav>
-        <a href="index.html">HOME</a>
-        <a href="login.html">LOGIN</a>
-        <a href="register.html">REGISTER</a>
-        <a href="catalogue.html">CATALOGUE</a>
-    </nav>
-
-    <div class="container">
-        <div class="sidebar">
-            <a href="#">BestSellings</a>
-            <a href="#">E-Books</a>
-            <a href="#">Science Books</a>
-            <a href="#">Engineering Books</a>
-        </div>
-        <div class="content">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKitppZrvL8v0GcmqNX3_rE6ZG5kb9839P5Q&s">
-            <h2>Welcome to Digital Book Store!</h2><br>
-            <i><h3>"A Huge Collection Of E-Books, Science Books and Engineering Books"</h3></i><br>
-            <a href="catalogue.html" class="cta">Shop Now</a>
-            <a href="#" class="cta">Add To Cart</a>
-        </div>
+    <div class="content">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKitppZrvL8v0GcmqNX3_rE6ZG5kb9839P5Q&s" alt="Book Store">
+      <h2>Welcome to Digital Book Store!</h2><br>
+      <i><h3>"A Huge Collection Of E-Books, Science Books and Engineering Books"</h3></i><br>
+      <a href="catalogue.html" class="cta">Shop Now</a>
+      <a href="#" class="cta">Add To Cart</a>
     </div>
+  </div>
 
-    <footer>
-        <p>&copy; 2025 Digital's Book Store | <a href="#">Contact Us</a></p>
-    </footer>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Digital's Book Store | <a href="#">Contact Us</a></p>
+  </footer>
+
+  <!-- Hamburger Toggle Script -->
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('show');
+    });
+  </script>
+
 </body>
 </html>
