@@ -1,248 +1,830 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Online Book Store</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: white;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 100%);
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
 
-    .header {
-      background-color: #78878b;
-      color: white;
-      padding: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
+        /* Animated background particles */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
 
-    .logo img {
-      width: 80px;
-      height: 80px;
-    }
+        .particle {
+            position: absolute;
+            background: rgba(64, 224, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
 
-    .header-title {
-      text-align: center;
-      flex: 1;
-    }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
 
-    .header-title h1 {
-      font-size: 30px;
-      margin-bottom: 5px;
-    }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
 
-    .header-title h2 {
-      font-size: 16px;
-      font-weight: 400;
-    }
+        nav.scrolled {
+            background: rgba(15, 15, 35, 0.98);
+            box-shadow: 0 2px 20px rgba(64, 224, 255, 0.1);
+        }
 
-    /* Navbar */
-    .navbar {
-      background-color: #555c5c;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      flex-wrap: wrap;
-    }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .nav-logo {
-      font-size: 20px;
-      font-weight: bold;
-      color: white;
-    }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #40e0ff, #ff4081);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-    .nav-toggle {
-      font-size: 28px;
-      display: none;
-      cursor: pointer;
-    }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 40px;
-    }
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
 
-    .nav-links li a {
-      color: wheat;
-      text-decoration: none;
-      font-size: 17px;
-      transition: 0.3s;
-    }
+        .nav-links a:hover {
+            color: #40e0ff;
+        }
 
-    .nav-links li a:hover {
-      color: white;
-      transform: scale(1.03);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-    }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #40e0ff, #ff4081);
+            transition: width 0.3s ease;
+        }
 
-    @media (max-width: 768px) {
-      .nav-toggle {
-        display: block;
-      }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #444;
-        margin-top: 10px;
-      }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
 
-      .nav-links.show {
-        display: flex;
-      }
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #40e0ff, #ff4081, #9c27b0);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
 
-      .nav-links li {
-        text-align: center;
-        padding: 10px 0;
-      }
-    }
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(64, 224, 255, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 64, 129, 0.5); }
+        }
 
-    .container {
-      display: flex;
-      min-height: 80vh;
-      flex-wrap: wrap;
-    }
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
 
-    .sidebar {
-      width: 200px;
-      background: linear-gradient(500deg, #acc8fd, #007b8b);
-      padding: 20px;
-      border-right: 2px solid #ddd;
-    }
+        .cta-button {
+            background: linear-gradient(45deg, #40e0ff, #ff4081);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(64, 224, 255, 0.3);
+        }
 
-    .sidebar a {
-      display: block;
-      color: #352a3d;
-      text-decoration: none;
-      margin-bottom: 15px;
-      font-size: 16px;
-      transition: all 0.3s ease;
-    }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(64, 224, 255, 0.5);
+        }
 
-    .sidebar a:hover {
-      color: #00008b;
-      transform: translateX(5px);
-    }
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .cta {
-      background-color: black;
-      color: white;
-      padding: 12px 20px;
-      text-decoration: none;
-      text-align: center;
-      border-radius: 5px;
-      font-weight: bold;
-      margin: 10px;
-      display: inline-block;
-    }
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(45deg, #40e0ff, #ff4081);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-    .content {
-      flex: 1;
-      color: black;
-      padding: 30px;
-      text-align: center;
-      background: linear-gradient(120deg, #79838d, #d1d7e0);
-    }
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
 
-    .content img {
-      width: 250px;
-      margin-bottom: 20px;
-    }
+        .profile-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #40e0ff, #ff4081);
+            padding: 4px;
+            margin: 0 auto;
+        }
 
-    .content h3 {
-      color: #00008b;
-      margin-bottom: 15px;
-    }
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #2a2a2a;
+        }
 
-    .content p {
-      font-size: 18px;
-      font-weight: bold;
-      color: #ab8bb9;
-    }
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
 
-    footer {
-      background-color: #424040;
-      color: wheat;
-      text-align: center;
-      padding: 10px;
-    }
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+        }
 
-    footer a {
-      color: wheat;
-      text-decoration: underline;
-    }
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(64, 224, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
 
-    footer a:hover {
-      color: white;
-    }
-  </style>
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(64, 224, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(64, 224, 255, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-level {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(45deg, #40e0ff, #ff4081);
+            transition: width 2s ease;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(64, 224, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(64, 224, 255, 0.3);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #40e0ff, #ff4081);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #40e0ff;
+        }
+
+        .project-description {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(64, 224, 255, 0.2);
+            color: #40e0ff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: #40e0ff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #ff4081;
+        }
+
+        /* Certificates Section */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .certificate-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(64, 224, 255, 0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(64, 224, 255, 0.3);
+        }
+
+        .certificate-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #40e0ff, #ff4081);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .certificate-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #40e0ff;
+        }
+
+        .certificate-issuer {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-date {
+            opacity: 0.6;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .view-cert-button {
+            background: linear-gradient(45deg, #40e0ff, #ff4081);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(64, 224, 255, 0.3);
+        }
+
+        .view-cert-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(64, 224, 255, 0.5);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: #40e0ff;
+        }
+
+        .contact-link {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #40e0ff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
+    <!-- Background Animation -->
+    <div class="background-animation" id="backgroundAnimation"></div>
 
-  <!-- Header -->
-  <div class="header">
-    <div class="logo">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFyuyX5fuPg_zl1UIWW6bpfMSv4fQlmXnPcQ&s" alt="Logo">
-    </div>
-    <div class="header-title">
-      <h1>Digital Book Store</h1>
-      <h2>Created & Maintained by Aditya</h2>
-    </div>
-  </div>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Aditya Chavan</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <!-- Responsive Navbar -->
-  <nav class="navbar">
-    <div class="nav-logo">📚 Book Store</div>
-    <div class="nav-toggle" id="navToggle">&#9776;</div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="login.html">LOGIN</a></li>
-      <li><a href="register.html">REGISTER</a></li>
-      <li><a href="catalogue.html">CATALOGUE</a></li>
-    </ul>
-  </nav>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content fade-in">
+            <h1>Aditya Chavan</h1>
+            <p>Full Stack Developer & Creative Technologist</p>
+            <a href="#projects" class="cta-button">View My Work</a>
+        </div>
+    </section>
 
-  <!-- Main Content -->
-  <div class="container">
-    <div class="sidebar">
-      <a href="#">BestSellings</a>
-      <a href="#">E-Books</a>
-      <a href="#">Science Books</a>
-      <a href="#">Engineering Books</a>
-    </div>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="fade-in">About Me</h2>
+        <div class="about-content">
+            <div class="profile-image fade-in">
+                <img src="pfp1.jpg" alt="Profile Picture">
+            </div>
+            <div class="about-text fade-in">
+                <p>I'm a passionate developer with expertise in modern web technologies and a keen eye for design. I love creating innovative solutions that bridge the gap between functionality and user experience.</p>
+                <br>
+                <p>With a strong foundation in both front-end and back-end development, I specialize in building scalable applications using cutting-edge technologies. I'm constantly learning and adapting to new trends in the tech industry.</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="content">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKitppZrvL8v0GcmqNX3_rE6ZG5kb9839P5Q&s" alt="Book Store">
-      <h2>Welcome to Digital Book Store!</h2><br>
-      <i><h3>"A Huge Collection Of E-Books, Science Books and Engineering Books"</h3></i><br>
-      <a href="catalogue.html" class="cta">Shop Now</a>
-      <a href="#" class="cta">Add To Cart</a>
-    </div>
-  </div>
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h2 class="fade-in">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <div class="skill-icon">💻</div>
+                <div class="skill-name">Frontend Development</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 90%;"></div>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-icon">⚙️</div>
+                <div class="skill-name">Backend Development</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 85%;"></div>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-icon">📱</div>
+                <div class="skill-name">Mobile Development</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 75%;"></div>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-icon">☁️</div>
+                <div class="skill-name">Cloud Computing</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 80%;"></div>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-icon">🎨</div>
+                <div class="skill-name">UI/UX Design</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 85%;"></div>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-icon">🗄️</div>
+                <div class="skill-name">Database Management</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 88%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Digital's Book Store | <a href="#">Contact Us</a></p>
-  </footer>
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="fade-in">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <div class="project-image">🚀</div>
+                <div class="project-content">
+                    <h3 class="project-title">Portfolio Website</h3>
+                    <p class="project-description">The site you are viewing currently,built with HTML,CSS & JavaScript</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Git</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
 
-  <!-- Hamburger Toggle Script -->
-  <script>
-    const toggle = document.getElementById('navToggle');
-    const links = document.getElementById('navLinks');
+            <div class="project-card fade-in">
+                <div class="project-image">📱</div>
+                <div class="project-content">
+                    <h3 class="project-title">Task Management App</h3>
+                    <p class="project-description">A collaborative task management application with real-time updates, team collaboration features, and advanced analytics.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">PWA</span>
+                        <span class="tech-tag">Chart.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
 
-    toggle.addEventListener('click', () => {
-      links.classList.toggle('show');
-    });
-  </script>
+            <div class="project-card fade-in">
+                <div class="project-image">🤖</div>
+                <div class="project-content">
+                    <h3 class="project-title">AI Chat Bot</h3>
+                    <p class="project-description">An intelligent chatbot with natural language processing capabilities and machine learning-powered responses.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">NLP</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Certificates Section -->
+    <section id="certificates" class="section">
+        <h2 class="fade-in">Certificates & Achievements</h2>
+        <div class="certificates-grid">
+            <div class="certificate-card fade-in">
+                <div class="certificate-icon">🏆</div>
+                <h3 class="certificate-name">Gen AI powered Data Analytics</h3>
+                <p class="certificate-issuer">TATA Forage</p>
+                <p class="certificate-date">August-2025</p>
+                <a href="aditya-forage.png" class="view-cert-button">View Certificate</a>
+            </div>
+            <div class="certificate-card fade-in">
+                <div class="certificate-icon">📊</div>
+                <h3 class="certificate-name">Google Analytics Certified</h3>
+                <p class="certificate-issuer">Google</p>
+                <p class="certificate-date">2024</p>
+                <a href="#" class="view-cert-button">View Certificate</a>
+            </div>
+            <div class="certificate-card fade-in">
+                <div class="certificate-icon">🔐</div>
+                <h3 class="certificate-name">Cybersecurity Specialist</h3>
+                <p class="certificate-issuer">CompTIA</p>
+                <p class="certificate-date">2023</p>
+                <a href="#" class="view-cert-button">View Certificate</a>
+            </div>
+            <div class="certificate-card fade-in">
+                <div class="certificate-icon">🎯</div>
+                <h3 class="certificate-name">Scrum Master Certified</h3>
+                <p class="certificate-issuer">Scrum Alliance</p>
+                <p class="certificate-date">2023</p>
+                <a href="#" class="view-cert-button">View Certificate</a>
+            </div>
+            <div class="certificate-card fade-in">
+                <div class="certificate-icon">🌐</div>
+                <h3 class="certificate-name">Full Stack Web Development</h3>
+                <p class="certificate-issuer">FreeCodeCamp</p>
+                <p class="certificate-date">2022</p>
+                <a href="#" class="view-cert-button">View Certificate</a>
+            </div>
+            <div class="certificate-card fade-in">
+                <div class="certificate-icon">🧠</div>
+                <h3 class="certificate-name">Machine Learning Professional</h3>
+                <p class="certificate-issuer">Coursera</p>
+                <p class="certificate-date">2022</p>
+                <a href="#" class="view-cert-button">View Certificate</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="fade-in">Get In Touch</h2>
+        <div class="contact-content">
+            <p class="fade-in">I'm always open to discussing new opportunities and exciting projects. Let's connect!</p>
+            <div class="contact-info fade-in">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <a href="mailto:your.email@example.com" class="contact-link">your.email@example.com</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💼</div>
+                    <a href="https://linkedin.com/in/yourprofile" class="contact-link">LinkedIn</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🐙</div>
+                    <a href="https://github.com/yourusername" class="contact-link">GitHub</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🐦</div>
+                    <a href="https://twitter.com/yourusername" class="contact-link">Twitter</a>
+                </div>
+            </div>
+            <a href="mailto:your.email@example.com" class="cta-button">Send Message</a>
+        </div>
+    </section>
+
+    <script>
+        // Create animated background particles
+        function createParticles() {
+            const container = document.getElementById('backgroundAnimation');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 2;
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                const delay = Math.random() * 6;
+                
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.animationDelay = delay + 's';
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Animate skill progress bars when visible
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBar = entry.target.querySelector('.skill-progress');
+                    if (progressBar) {
+                        progressBar.style.width = progressBar.style.width;
+                    }
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Observe skill cards for progress animation
+            document.querySelectorAll('.skill-card').forEach(el => {
+                skillObserver.observe(el);
+            });
+
+            // Initial animation for hero
+            setTimeout(() => {
+                document.querySelector('.hero-content').classList.add('visible');
+            }, 500);
+        });
+
+        // Add hover effects to project and certificate cards
+        document.querySelectorAll('.project-card, .certificate-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
 </body>
 </html>
